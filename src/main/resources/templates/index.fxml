@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gm.Tasks.Controlador.IndexControlador">
    <children>
-      <Label layoutX="243.0" layoutY="62.0" text="Tasks system">
+      <Label alignment="CENTER" layoutX="224.0" layoutY="54.0" text="Tasks system">
          <font>
-            <Font size="20.0" />
+            <Font name="System Bold" size="25.0" />
          </font>
       </Label>
+      <TableView fx:id="taskTable" layoutX="120.0" layoutY="135.0" prefHeight="200.0" prefWidth="363.0">
+        <columns>
+          <TableColumn fx:id="taskIdColumn" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="taskNameColumn" prefWidth="75.0" text="Task" />
+            <TableColumn fx:id="responsiblePersonColumn" prefWidth="135.0" text="Responsible Person" />
+            <TableColumn fx:id="statusColumn" prefWidth="75.0" text="Status" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>
