@@ -40,6 +40,27 @@ public class IndexControlador implements Initializable {
     @FXML
     private TableColumn<Task, String> statusColumn;
 
+    @FXML
+    public TextField taskNameText;
+
+    @FXML
+    public TextField responsiblePersonText;
+
+    @FXML
+    public TextField statusText;
+
+    @FXML
+    public Button addButton;
+
+    @FXML
+    public Button updateButton;
+
+    @FXML
+    public Button deleteButton;
+
+    @FXML
+    public Button resetButton;
+
     private final ObservableList<Task> taskList =
             FXCollections.observableArrayList();
 
@@ -62,6 +83,43 @@ public class IndexControlador implements Initializable {
         taskList.clear();
         taskList.addAll(taskService.listTasks());
         taskTable.setItems(taskList);
+    }
+
+    public void addTask() {
+        if(taskNameText.getText().isEmpty()) {
+            showMessage("Validation Error", "You must give a task name.");
+            taskNameText.requestFocus();
+            return;
+        }
+        else {
+            Task task = new Task();
+            getFormData(task);
+            taskService.saveTask(task);
+            showMessage("Information", "Task added.");
+            resetForm();
+            listTasks();
+        }
+    }
+
+    public void getFormData(Task task) {
+        task.setTaskName(taskNameText.getText());
+        task.setResponsiblePerson(responsiblePersonText.getText());
+        task.setStatus(statusText.getText());
+
+    }
+
+    public void resetForm() {
+        taskNameText.clear();
+        responsiblePersonText.clear();
+        statusText.clear();
+    }
+
+    public void showMessage(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
 
