@@ -15,7 +15,7 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <TableView fx:id="taskTable" layoutX="209.0" layoutY="82.0" prefHeight="200.0" prefWidth="363.0">
+      <TableView fx:id="taskTable" layoutX="209.0" layoutY="82.0" onMouseClicked="#loadSelectedTask" prefHeight="200.0" prefWidth="363.0">
         <columns>
           <TableColumn fx:id="taskIdColumn" prefWidth="75.0" text="ID" />
           <TableColumn fx:id="taskNameColumn" prefWidth="75.0" text="Task" />
@@ -48,9 +48,9 @@
       <AnchorPane layoutX="24.0" layoutY="299.0" prefHeight="85.0" prefWidth="549.0">
          <children>
             <Button fx:id="addButton" layoutX="14.0" layoutY="30.0" mnemonicParsing="false" onAction="#addTask" style="-fx-background-color: #3e4b5c;" text="Add" textFill="#e8e5df" />
-            <Button fx:id="updateButton" layoutX="76.0" layoutY="30.0" mnemonicParsing="false" style="-fx-background-color: #3e4b5c;" text="Update" textFill="#e8e5df" />
-            <Button fx:id="deleteButton" layoutX="158.0" layoutY="30.0" mnemonicParsing="false" style="-fx-background-color: #a82525;" text="Delete" textFill="#e8e5df" />
-            <Button fx:id="resetButton" layoutX="238.0" layoutY="30.0" mnemonicParsing="false" style="-fx-background-color: #fff957;" text="Reset" textFill="#2c2c2c" />
+            <Button fx:id="updateButton" layoutX="76.0" layoutY="30.0" mnemonicParsing="false" onAction="#updateTask" style="-fx-background-color: #3e4b5c;" text="Update" textFill="#e8e5df" />
+            <Button fx:id="deleteButton" layoutX="158.0" layoutY="30.0" mnemonicParsing="false" onAction="#deleteTask" style="-fx-background-color: #a82525;" text="Delete" textFill="#e8e5df" />
+            <Button fx:id="resetButton" layoutX="238.0" layoutY="30.0" mnemonicParsing="false" onAction="#resetForm" style="-fx-background-color: #fff957;" text="Reset" textFill="#2c2c2c" />
          </children>
       </AnchorPane>
    </children>

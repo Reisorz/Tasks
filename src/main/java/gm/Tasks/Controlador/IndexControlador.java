@@ -64,6 +64,8 @@ public class IndexControlador implements Initializable {
     private final ObservableList<Task> taskList =
             FXCollections.observableArrayList();
 
+    private Integer taskIdIntern;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         taskTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -94,6 +96,7 @@ public class IndexControlador implements Initializable {
         else {
             Task task = new Task();
             getFormData(task);
+            task.setTaskId(null);
             taskService.saveTask(task);
             showMessage("Information", "Task added.");
             resetForm();
@@ -102,6 +105,9 @@ public class IndexControlador implements Initializable {
     }
 
     public void getFormData(Task task) {
+        if(taskIdIntern != null) {
+            task.setTaskId(taskIdIntern);
+        }
         task.setTaskName(taskNameText.getText());
         task.setResponsiblePerson(responsiblePersonText.getText());
         task.setStatus(statusText.getText());
@@ -109,9 +115,11 @@ public class IndexControlador implements Initializable {
     }
 
     public void resetForm() {
+        taskIdIntern = null;
         taskNameText.clear();
         responsiblePersonText.clear();
         statusText.clear();
+        listTasks();
     }
 
     public void showMessage(String title, String message) {
@@ -120,6 +128,48 @@ public class IndexControlador implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public void loadSelectedTask() {
+        Task task = taskTable.getSelectionModel().getSelectedItem();
+        if (task != null) {
+            taskIdIntern = task.getTaskId();
+            taskNameText.setText(task.getTaskName());
+            responsiblePersonText.setText(task.getResponsiblePerson());
+            statusText.setText(task.getStatus());
+        }
+    }
+
+    public void  updateTask() {
+        if(taskIdIntern == null) {
+            showMessage("Information", "You must select a task.");
+            return;
+        }
+        if (taskNameText.getText().isEmpty()) {
+            showMessage("Validation error", "You must give a task name");
+            taskNameText.requestFocus();
+            return;
+        }
+        Task task = new Task();
+        getFormData(task);
+        taskService.saveTask(task);
+        showMessage("Information", "Task updated.");
+        resetForm();
+        listTasks();
+    }
+
+    public void deleteTask() {
+        Task task = new Task();
+        getFormData(task);
+        if (taskIdIntern == null) {
+            showMessage("Validation error", "You must select a task.");
+        }
+        else {
+            taskService.deleteTask(task);
+            showMessage("Information", "Task deleted.");
+        }
+        resetForm();
+        listTasks();
     }
 }
 
