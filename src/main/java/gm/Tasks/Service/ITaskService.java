@@ -8,7 +8,11 @@ public interface ITaskService {
 
     public Task searchTaskById(Integer taskId);
 
+    public List<Task> searchTaskByName (String taskName);
+
     public void saveTask(Task task);
 
     public void deleteTask(Task task);
+
+
 }

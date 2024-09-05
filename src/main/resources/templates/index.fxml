@@ -51,6 +51,7 @@
             <Button fx:id="updateButton" layoutX="76.0" layoutY="30.0" mnemonicParsing="false" onAction="#updateTask" style="-fx-background-color: #3e4b5c;" text="Update" textFill="#e8e5df" />
             <Button fx:id="deleteButton" layoutX="158.0" layoutY="30.0" mnemonicParsing="false" onAction="#deleteTask" style="-fx-background-color: #a82525;" text="Delete" textFill="#e8e5df" />
             <Button fx:id="resetButton" layoutX="238.0" layoutY="30.0" mnemonicParsing="false" onAction="#resetForm" style="-fx-background-color: #fff957;" text="Reset" textFill="#2c2c2c" />
+            <Button fx:id="searchButton" layoutX="305.0" layoutY="30.0" mnemonicParsing="false" onAction="#searchTask" style="-fx-background-color: #3e4b5c;" text="Search" textFill="#e8e5df" />
          </children>
       </AnchorPane>
    </children>

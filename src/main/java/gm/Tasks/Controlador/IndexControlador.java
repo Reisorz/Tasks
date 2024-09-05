@@ -171,5 +171,13 @@ public class IndexControlador implements Initializable {
         resetForm();
         listTasks();
     }
+
+    public void searchTask() {
+        taskList.clear();
+        Task task = new Task();
+        getFormData(task);
+        taskList.addAll(taskService.searchTaskByName(task.getTaskName()));
+        taskTable.setItems(taskList);
+    }
 }
 

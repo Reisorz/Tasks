@@ -25,6 +25,11 @@ public class TaskService implements ITaskService{
     }
 
     @Override
+    public List<Task> searchTaskByName(String taskName) {
+        return taskRepository.searchTaskByName(taskName);
+    }
+
+    @Override
     public void saveTask(Task task) {
         taskRepository.save(task);
     }
